@@ -35,4 +35,6 @@ public class UserService {
     public List<User> findAll() {
         return userDAO.findAll();
     }
+
+    public boolean existsById(Long id) { return userDAO.findById(id) != null; }
 }
