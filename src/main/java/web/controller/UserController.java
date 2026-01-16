@@ -20,13 +20,13 @@ public class UserController {
         this.userServiceImpl = userServiceImpl;
     }
 
-    @GetMapping("/users/addUser")
-    public String addUser(@PathVariable Long id, Model model) {
+    @GetMapping("/addUser")
+    public String addUser( Model model) {
         model.addAttribute("user", new User());
         return "addUser";
     }
 
-    @PostMapping("/users/saveUser")
+    @PostMapping("/saveUser")
     public String saveUser(@ModelAttribute User user) {
         if(!userServiceImpl.existsById(user.getId())){
             userServiceImpl.save(user);
@@ -36,13 +36,13 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @GetMapping("/users/deleteUser")
+    @GetMapping("/deleteUser/{id}")
     public String deleteUser(User user) {
         userServiceImpl.delete(user.getId());
         return "redirect:/users";
     }
 
-    @GetMapping("/users/editUser")
+    @GetMapping("/edit/{id}")
     public String editUser(User user) {
         userServiceImpl.update(user);
         return "redirect:/users";
