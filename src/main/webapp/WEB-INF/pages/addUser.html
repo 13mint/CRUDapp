@@ -5,10 +5,14 @@
     <input type="hidden" th:field="*{users.id}"/>
 
     <label>Name:</label>
-    <input type="text" th:field="*{users.name}" required><br><br>
+    <label>
+        <input type="text" th:field="*{users.name}" required>
+    </label><br><br>
 
     <label>Surname:</label>
-    <input type="text" th:field="*{users.surname}" required><br><br>
+    <label>
+        <input type="text" th:field="*{users.surname}" required>
+    </label><br><br>
 
     <button type="submit">Сохранить</button>
 </form>
