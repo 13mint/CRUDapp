@@ -7,34 +7,17 @@ import web.model.User;
 
 import java.util.List;
 
-@Service
-public class UserService {
+public interface UserService {
 
-    private UserDAO userDAO = new UserDAOImpl();
+    public void save(User user);
 
-    public UserService(UserDAO userDAO) {
-        this.userDAO = userDAO;
-    }
+    public void update(User user);
 
-    public void save(User user) {
-        userDAO.save(user);
-    }
+    public void delete(Long id);
 
-    public void update(User user) {
-        userDAO.update(user);
-    }
+    public User findById(Long id);
 
-    public void delete(Long id) {
-        userDAO.delete(id);
-    }
+    public List<User> findAll();
 
-    public User findById(Long id) {
-        return userDAO.findById(id);
-    }
-
-    public List<User> findAll() {
-        return userDAO.findAll();
-    }
-
-    public boolean existsById(Long id) { return userDAO.findById(id) != null; }
+    public boolean existsById(Long id);
 }

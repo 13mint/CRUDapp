@@ -10,15 +10,15 @@ import web.service.UserService;
 @Controller
 @RequestMapping("/users")
 public class UserController {
-    private final UserService userService;
+    private final UserService userServiceImpl;
 
     public String listUsers(Model model) {
-        model.addAttribute("users", userService.findAll());
+        model.addAttribute("users", userServiceImpl.findAll());
         return "users";
     }
 
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public UserController(UserService userServiceImpl) {
+        this.userServiceImpl = userServiceImpl;
     }
 
     @GetMapping("/addUser")
@@ -29,22 +29,22 @@ public class UserController {
 
     @GetMapping("/saveUser")
     public String saveUser(User user) {
-        if(!userService.existsById(user.getId())){
-            userService.save(user);
+        if(!userServiceImpl.existsById(user.getId())){
+            userServiceImpl.save(user);
         } else{
-            userService.update(user);
+            userServiceImpl.update(user);
         }
         return "redirect:/users";
     }
 
     public String deleteUser(User user) {
-        userService.delete(user.getId());
+        userServiceImpl.delete(user.getId());
         return "redirect:/users";
     }
 
     @GetMapping("/editUser")
     public String editUser(User user) {
-        userService.update(user);
+        userServiceImpl.update(user);
         return "redirect:/users";
     }
 }
