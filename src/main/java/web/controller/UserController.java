@@ -10,14 +10,16 @@ import web.service.UserService;
 @RequestMapping("/users")
 public class UserController {
     private final UserService userServiceImpl;
+
+    public UserController(UserService userServiceImpl) {
+        this.userServiceImpl = userServiceImpl;
+    }
+
+
     @GetMapping
     public String listUsers(Model model) {
         model.addAttribute("users", userServiceImpl.findAll());
         return "users";
-    }
-
-    public UserController(UserService userServiceImpl) {
-        this.userServiceImpl = userServiceImpl;
     }
 
     @GetMapping("/addUser")
@@ -26,7 +28,6 @@ public class UserController {
         return "addUser";
     }
 
-    @PostMapping("/saveUser")
     public String saveUser(@ModelAttribute User user) {
         if(!userServiceImpl.existsById(user.getId())){
             userServiceImpl.save(user);
@@ -43,8 +44,8 @@ public class UserController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editUser(User user) {
-        userServiceImpl.update(user);
-        return "redirect:/users";
+    public String editUser(Model model, @PathVariable long id) {
+        model.addAttribute("user", userServiceImpl.findById(id));
+        return "users";
     }
 }
