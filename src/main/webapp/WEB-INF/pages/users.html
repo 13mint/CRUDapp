@@ -1,10 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Cars</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 60%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #eeeeee;
+        }
+    </style>
 </head>
 <body>
+
+<a th:href="@{/users/new}">
+    <button>Добавить пользователя</button>
+</a>
+
+<h2>Users list</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.surname}"></td>
+
+        <td>
+            <a th:href="@{/users/edit/{id}(id=${user.id})}">
+                <button>Изменить</button>
+            </a>
+            <a th:href="@{/users/delete/{id}(id=${user.id})}"
+               onclick="return confirm('Удалить пользователя?')">
+                <button>Удалить</button>
+            </a>
+        </td>
+    </tr>
+
+    </tbody>
+</table>
 
 </body>
 </html>
