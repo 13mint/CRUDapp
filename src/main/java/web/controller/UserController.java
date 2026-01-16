@@ -2,8 +2,7 @@ package web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import web.model.User;
 import web.service.UserService;
 
@@ -11,7 +10,7 @@ import web.service.UserService;
 @RequestMapping("/users")
 public class UserController {
     private final UserService userServiceImpl;
-
+    @GetMapping
     public String listUsers(Model model) {
         model.addAttribute("users", userServiceImpl.findAll());
         return "users";
@@ -22,13 +21,13 @@ public class UserController {
     }
 
     @GetMapping("/users/addUser")
-    public String addUser(Model model) {
+    public String addUser(@PathVariable Long id, Model model) {
         model.addAttribute("user", new User());
         return "addUser";
     }
 
-    @GetMapping("/users/saveUser")
-    public String saveUser(User user) {
+    @PostMapping("/users/saveUser")
+    public String saveUser(@ModelAttribute User user) {
         if(!userServiceImpl.existsById(user.getId())){
             userServiceImpl.save(user);
         } else{
