@@ -21,13 +21,13 @@ public class UserController {
         this.userServiceImpl = userServiceImpl;
     }
 
-    @GetMapping("/addUser")
+    @GetMapping("/users/addUser")
     public String addUser(Model model) {
         model.addAttribute("user", new User());
         return "addUser";
     }
 
-    @GetMapping("/saveUser")
+    @GetMapping("/users/saveUser")
     public String saveUser(User user) {
         if(!userServiceImpl.existsById(user.getId())){
             userServiceImpl.save(user);
@@ -37,12 +37,13 @@ public class UserController {
         return "redirect:/users";
     }
 
+    @GetMapping("/users/deleteUser")
     public String deleteUser(User user) {
         userServiceImpl.delete(user.getId());
         return "redirect:/users";
     }
 
-    @GetMapping("/editUser")
+    @GetMapping("/users/editUser")
     public String editUser(User user) {
         userServiceImpl.update(user);
         return "redirect:/users";
