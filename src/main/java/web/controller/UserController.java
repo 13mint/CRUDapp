@@ -28,6 +28,7 @@ public class UserController {
         return "addUser";
     }
 
+    @PostMapping
     public String saveUser(@ModelAttribute User user) {
         if(!userServiceImpl.existsById(user.getId())){
             userServiceImpl.save(user);
@@ -37,7 +38,7 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @GetMapping("/deleteUser/{id}")
+    @PostMapping("/deleteUser/{id}")
     public String deleteUser(User user) {
         userServiceImpl.delete(user.getId());
         return "redirect:/users";
