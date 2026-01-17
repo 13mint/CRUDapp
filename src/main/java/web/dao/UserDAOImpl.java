@@ -38,7 +38,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public List<User> findAll() {
         return em
-                .createQuery("from User", User.class)
+                .createQuery("FROM User", User.class)
                 .getResultList();
     }
 }

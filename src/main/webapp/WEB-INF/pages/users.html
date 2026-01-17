@@ -44,14 +44,14 @@
 
         <td>
             <a th:href="@{/users/edit/{id}(id=${user.id})}">
-                <button>Изменить</button>
+                <button>Edit</button>
             </a>
             <form th:action="@{/users/deleteUser/{id}(id=${user.id})}"
                   method="post"
                   style="display:inline;"
                   onsubmit="return confirm('Вы уверены, что хотите удалить пользователя?');">
 
-                <button type="submit">Удалить</button>
+                <button type="submit">Delete</button>
             </form>
         </td>
     </tr>

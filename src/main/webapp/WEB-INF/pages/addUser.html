@@ -1,18 +1,33 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add User</title>
+</head>
+<body>
 
-<form th:action="@{/users/save}" th:object=" ${users}" method="post">
-    <input type="hidden" th:field="*{users.id}"/>
+<h2>Add User</h2>
 
-    <label>Name:</label>
-    <label>
-        <input type="text" th:field="*{users.name}" required>
-    </label><br><br>
+<form th:action="@{/users}" th:object="${user}" method="post">
 
-    <label>Surname:</label>
-    <label>
-        <input type="text" th:field="*{users.surname}" required>
-    </label><br><br>
+    <input type="hidden" th:field="*{id}" />
 
-    <button type="submit">Сохранить</button>
+    <div>
+        <label>Name:</label>
+        <input type="text" th:field="*{name}" />
+    </div>
+
+    <div>
+        <label>Last name:</label>
+        <input type="text" th:field="*{surname}" />
+    </div>
+
+    <br/>
+
+    <button type="submit">Save</button>
+
+
 </form>
+
+</body>
+</html>

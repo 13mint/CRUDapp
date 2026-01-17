@@ -22,7 +22,7 @@ public class UserController {
         return "users";
     }
 
-    @GetMapping("/users/addUser")
+    @GetMapping("/addUser")
     public String addUser( Model model) {
         model.addAttribute("user", new User());
         return "addUser";
@@ -38,13 +38,13 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @PostMapping("/users/deleteUser/{id}(id=${user.id})")
+    @PostMapping("/deleteUser/{id}")
     public String deleteUser(@PathVariable long id) {
         userServiceImpl.delete(id);
         return "redirect:/users";
     }
 
-    @GetMapping("/users/edit/{id}(id=${user.id})")
+    @GetMapping("/edit/{id}")
     public String editUser(@PathVariable long id,Model model) {
         model.addAttribute("user", userServiceImpl.findById(id));
         return "users";

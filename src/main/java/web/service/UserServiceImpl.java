@@ -6,28 +6,32 @@ import web.dao.UserDAOImpl;
 import org.springframework.stereotype.Service;
 import web.model.User;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     private final UserDAO userDAO;
-
+    @Autowired
     public UserServiceImpl(UserDAO userDAO) {
         this.userDAO = userDAO;
     }
 
     @Override
+    @Transactional
     public void save(User user) {
         userDAO.save(user);
     }
 
     @Override
+    @Transactional
     public void update(User user) {
         userDAO.update(user);
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
         userDAO.delete(id);
     }
