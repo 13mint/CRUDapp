@@ -35,7 +35,7 @@ public class User {
 
     @NotNull
     @Pattern(
-            regexp = "^[A-Za-z0-9+_.-]+@(.+\\.com)$",
+            regexp = "^[A-Za-z0-9+_.-@]+(\\.com)$",
             message = "Email must end with .com"
     )
     private String email;
