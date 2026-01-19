@@ -2,9 +2,12 @@ package web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import web.model.User;
 import web.service.UserService;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/users")
@@ -29,7 +32,10 @@ public class UserController {
     }
 
     @PostMapping()
-    public String saveUser(@ModelAttribute User user) {
+    public String saveUser(@Valid @ModelAttribute User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "addUser";
+        }
         if(!userServiceImpl.existsById(user.getId())){
             userServiceImpl.save(user);
         } else{

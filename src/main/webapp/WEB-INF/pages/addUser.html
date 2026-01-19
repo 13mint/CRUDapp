@@ -16,6 +16,9 @@
         <label>Name:</label>
         <label>
             <input type="text" th:field="*{name}" />
+            <div th:if="${#fields.hasErrors('name')}"
+                 th:errors="*{name}" style="color:red"></div>
+
         </label>
     </div>
 
@@ -23,6 +26,8 @@
         <label>Last name:</label>
         <label>
             <input type="text" th:field="*{surname}" />
+            <div th:if="${#fields.hasErrors('surname')}"
+                 th:errors="*{surname}" style="color:red"></div>
         </label>
     </div>
 
@@ -30,6 +35,8 @@
         <label>Age:</label>
         <label>
             <input type="text" th:field="*{age}" />
+            <div th:if="${#fields.hasErrors('age')}"
+                 th:errors="*{age}" style="color:red"></div>
         </label>
     </div>
 
@@ -37,6 +44,8 @@
         <label>Email:</label>
         <label>
             <input type="text" th:field="*{email}" />
+            <div th:if="${#fields.hasErrors('email')}"
+                 th:errors="*{email}" style="color:red"></div>
         </label>
     </div>
 
