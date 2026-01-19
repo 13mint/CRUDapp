@@ -43,7 +43,7 @@
         <td th:text="${user.surname}"></td>
 
         <td>
-            <a th:href="@{/users/edit/{id}(id=${user.id})}">
+            <a th:href="@{/users/editUser/{id}(id=${user.id})}">
                 <button>Edit</button>
             </a>
             <form th:action="@{/users/deleteUser/{id}(id=${user.id})}"

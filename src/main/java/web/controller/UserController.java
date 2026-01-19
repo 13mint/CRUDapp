@@ -28,7 +28,7 @@ public class UserController {
         return "addUser";
     }
 
-    @PostMapping
+    @PostMapping()
     public String saveUser(@ModelAttribute User user) {
         if(!userServiceImpl.existsById(user.getId())){
             userServiceImpl.save(user);
@@ -44,9 +44,16 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/editUser/{id}")
     public String editUser(@PathVariable long id,Model model) {
         model.addAttribute("user", userServiceImpl.findById(id));
-        return "users";
+        return "editUser";
     }
+
+    @PostMapping("/update")
+    public String updateUser(@ModelAttribute("user") User user) {
+        userServiceImpl.update(user);
+        return "redirect:/users";
+    }
+
 }
