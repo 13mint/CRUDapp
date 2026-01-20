@@ -57,7 +57,10 @@ public class UserController {
     }
 
     @PostMapping("/update")
-    public String updateUser(@ModelAttribute("user") User user) {
+    public String updateUser(@Valid @ModelAttribute("user") User user,  BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "editUser";
+        }
         userServiceImpl.update(user);
         return "redirect:/users";
     }
