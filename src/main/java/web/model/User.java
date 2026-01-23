@@ -1,5 +1,4 @@
 package web.model;
-import com.mysql.cj.protocol.x.XMessage;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -9,7 +8,7 @@ import javax.validation.constraints.*;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @NotBlank
     @Pattern(

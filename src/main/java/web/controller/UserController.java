@@ -36,22 +36,18 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "addUser";
         }
-        if(!userServiceImpl.existsById(user.getId())){
-            userServiceImpl.save(user);
-        } else{
-            userServiceImpl.update(user);
-        }
+        userServiceImpl.save(user);
         return "redirect:/users";
     }
 
     @PostMapping("/deleteUser/{id}")
-    public String deleteUser(@PathVariable long id) {
+    public String deleteUser(@PathVariable Long id) {
         userServiceImpl.delete(id);
         return "redirect:/users";
     }
 
     @GetMapping("/editUser/{id}")
-    public String editUser(@PathVariable long id,Model model) {
+    public String editUser(@PathVariable Long id,Model model) {
         model.addAttribute("user", userServiceImpl.findById(id));
         return "editUser";
     }
