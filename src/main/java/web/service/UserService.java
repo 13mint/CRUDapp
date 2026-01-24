@@ -1,21 +1,18 @@
 package web.service;
 
-import web.repository.UserDAO;
 import web.model.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
 
-    public void save(User user);
+     void save(User user);
 
-    public void update(User user);
+     void delete(Long id);
 
-    public void delete(Long id);
+     Optional<User> findById(Long id);
 
-    public User findById(Long id);
+     List<User> findAll();
 
-    public List<User> findAll();
-
-    public boolean existsById(Long id);
 }
